@@ -36,22 +36,28 @@ $teams = Teams::findAll();
 			</header>
 			
 			<ul class="nav nav-tabs" id="tab">
-				<li class="active"><a href="#separation" data-toggle="tab">Schifting</a></li>
+				<?php if (Config::$HASSEPARATION): ?>
+					<li><a href="#separation" data-toggle="tab">Schifting</a></li>
+				<?php endif; ?>
+				
 				<?php foreach(Config::$ROUNDS as $num => $round): ?>
 					<li><a href="#round<?= $num; ?>" data-toggle="tab"><?= $round; ?></a></li>
 				<?php endforeach; ?>
 			</ul>
-			<div class="tab-content">
-				<div id="separation" class="tab-pane fade in active form-horizontal">
-					<?php foreach($teams as $team): ?>
-						<div class="control-group">
-							<label class="control-label" for="name"><?= $team->getName(); ?></label>
-							<div class="controls">
-								<input type="text" data-team="<?= $team->getId(); ?>" data-round="separation" class="input-xlarge roundScore" value="<?= $team->getScore('separation'); ?>">
+			<div class="tab-content" id="tab-content">
+				<?php if (Config::$HASSEPARATION): ?>
+					<div id="separation" class="tab-pane fade in form-horizontal">
+						<?php foreach($teams as $team): ?>
+							<div class="control-group">
+								<label class="control-label" for="name"><?= $team->getName(); ?></label>
+								<div class="controls">
+									<input type="text" data-team="<?= $team->getId(); ?>" data-round="separation" class="input-xlarge roundScore" value="<?= $team->getScore('separation'); ?>">
+								</div>
 							</div>
-						</div>
-					<?php endforeach; ?>
-				</div>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+				
 				<?php foreach(Config::$ROUNDS as $num => $round): ?>
 					<div id="round<?= $num; ?>" class="tab-pane fade in form-horizontal">
 						<?php foreach($teams as $team): ?>
@@ -71,6 +77,9 @@ $teams = Teams::findAll();
 		<script src="js/bootstrap.min.js"></script>
 		<script>
 			$(document).ready(function () {
+				$('#tab li:first').addClass('active');
+				$('#tab-content .tab-pane:first').addClass('active');
+			
 				$('.roundScore').keyup(function (e) {
 					if (e.keyCode == 13) {
 						var next = $(this).parent().parent().next().find('.roundScore');

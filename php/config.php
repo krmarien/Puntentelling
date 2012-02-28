@@ -8,9 +8,10 @@ class Config {
 	static $PASSWORD = 'jKPrRk77lOx7158';
 	static $TBL = 'groenveld.tbl_2012';
 	
-	static $ENDSCOREORDER = 'DESC';
+	static $ENDSCOREORDER = 'ASC';
 	
 	static $SEPARATIONQUESTION = 20;
+	static $HASSEPARATION = true;
 	
 	static $ROUNDS = array(
 		1 => 'Ronde 1',

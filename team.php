@@ -23,7 +23,8 @@ if (isset($_POST['add']) || isset($_POST['addrepeat'])) {
 }
 
 $teams = Teams::findAll();
-$lastTeam = end($teams);
+if (sizeof($teams) > 0)
+	$lastTeam = end($teams);
 ?>
 <!doctype html>
 <html lang="en">
@@ -86,7 +87,7 @@ $lastTeam = end($teams);
 						<div class="control-group">
 							<label class="control-label" for="number">Ploeg nummer</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" name="number" id="number" value="<?= $lastTeam->getNumber()+1 ?>">
+								<input type="text" class="input-xlarge" name="number" id="number" value="<?= !isset($lastTeam) ? 1 : $lastTeam->getNumber()+1 ?>">
 							</div>
 						</div>
 						<div class="form-actions">

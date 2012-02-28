@@ -28,8 +28,10 @@ class Teams {
 			$orderQuery .= ' round' . $num . ' + ';
 		}
 		$orderQuery = trim($orderQuery, ' + ');
+		
+		$separation = Config::$HASSEPARATION ? ', (separation - ' . Config::$SEPARATIONQUESTION . ') ' . ($order == 'DESC' ? 'ASC' : 'DESC') : '';
 				
-		$result = pg_query('SELECT * FROM ' . Config::$TBL . ' ORDER BY (' . $orderQuery . ') ' . $order . ', (separation - ' . Config::$SEPARATIONQUESTION . ') ' . ($order == 'DESC' ? 'ASC' : 'DESC') . '');
+		$result = pg_query('SELECT * FROM ' . Config::$TBL . ' ORDER BY (' . $orderQuery . ') ' . $order . ' ' . $separation . ' ');
 		
 		$teams = array();
 		while($row = pg_fetch_object($result)) {
