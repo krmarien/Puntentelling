@@ -14,12 +14,10 @@ class Teams {
 		return $teams;
 	}
 	
-	static public function findAllByRank($untill = 0)
+	static public function findAllByRank($order, $untill = 0)
 	{
 		if ($untill == 0)
 			$untill = key(array_slice(Config::$ROUNDS, -1, 1, TRUE));
-			
-		$order = Config::$ENDSCOREORDER;
 			
 		$orderQuery = '';
 		foreach(Config::$ROUNDS as $num => $round) {
@@ -54,7 +52,7 @@ class Teams {
 	
 	static public function add(Team $team)
 	{
-		pg_query('INSERT INTO ' . Config::$TBL . ' (num, name) VALUES(' . $team->getNumber() . ', \'' . $team->getName() . '\')');
+		pg_query('INSERT INTO ' . Config::$TBL . ' (num, name) VALUES(' . $team->getNumber() . ', \'' . pg_escape_string($team->getName()) . '\')');
 	}
 	
 	static public function remove(Team $team)
@@ -64,6 +62,6 @@ class Teams {
 	
 	static public function save(Team $team)
 	{
-		pg_query('UPDATE ' . Config::$TBL . ' SET num=' . $team->getNumber() . ', name=\'' . $team->getName() . '\' WHERE id = ' . $team->getId());
+		pg_query('UPDATE ' . Config::$TBL . ' SET num=' . $team->getNumber() . ', name=\'' . pg_escape_string($team->getName()) . '\' WHERE id = ' . $team->getId());
 	}
 }

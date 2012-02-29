@@ -6,7 +6,7 @@ require_once('php/Score.php');
 
 pg_connect('dbname=' . Config::$DATABASE . ' user=' . Config::$USER . ' password=' . Config::$PASSWORD . '');
 
-$teams = Teams::findAllByRank();
+$teams = Teams::findAllByRank(Config::$ENDSCOREORDER);
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,6 +38,9 @@ $teams = Teams::findAllByRank();
 			table .rank {
 				width: 150px;
 			}
+			table .total {
+				width: 150px;
+			}
 		</style>
 	</head>
 	<body>
@@ -67,6 +70,7 @@ $teams = Teams::findAllByRank();
 						<tr class="header">
 							<th class="rank">Ranking</th>
 							<th class="teamName">Ploegnaam</th>
+							<th class="total">Totaal</th>
 						</tr>
 					</thead>
 					<tbody class="scrollContent">
@@ -76,6 +80,7 @@ $teams = Teams::findAllByRank();
 							<tr class="team" style="display: none;">
 								<td class="rank"><?= $rank; ?></td>
 								<td class="teamName"><?= $team->getName(); ?></td>
+								<td class="total"><?= $team->getTotalScore(); ?></td>
 							</tr>
 							<?php $rank += Config::$ENDSCOREORDER == 'DESC' ? 1 : -1; ?>
 						<?php endforeach; ?>
@@ -122,7 +127,7 @@ $teams = Teams::findAllByRank();
 			function applySizes(isFullScreen) {
 				isFullScreen = isFullScreen == undefined ? false : true;
 				
-				$('#ranking .teamName').width($('#ranking').width() - $('#ranking .rank:first').width() - $('#ranking .rank:first').css('padding-left').replace("px", "") * 2);
+				$('#ranking .teamName').width($('#ranking').width() - $('#ranking .rank:first').width() - $('#ranking .rank:first').css('padding-left').replace("px", "") * 2 - $('#ranking .total:first').width() - $('#ranking .total:first').css('padding-left').replace("px", "") * 2);
 				if (isFullScreen)
 					$('#ranking tbody').css('max-height', $('#content').parent().height() - $('#ranking thead').height() - $('#content').css('padding-top').replace("px", "") * 2 - $('#ranking').css('margin-bottom').replace("px", "") - 2);
 				else

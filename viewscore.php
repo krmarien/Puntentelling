@@ -12,7 +12,7 @@ if (isset($_GET['untill'])) {
 	$untill = key(array_slice(Config::$ROUNDS, -1, 1, TRUE));
 }
 
-$teams = Teams::findAllByRank($untill);
+$teams = Teams::findAllByRank('DESC', $untill);
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,6 +38,7 @@ $teams = Teams::findAllByRank($untill);
 			}
 			table .round {
 				width: 20px;
+				text-align: center;
 			}
 		</style>
 	</head>

@@ -47,4 +47,9 @@ class Team {
 	{
 		return $this->score->getScore($round);
 	}
+	
+	public function getTotalScore()
+	{
+		return $this->score->getTotal();
+	}
 }

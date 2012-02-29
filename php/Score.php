@@ -20,4 +20,14 @@ class Score {
 			return 0;
 		return $score;
 	}
+	
+	public function getTotal()
+	{
+		$total = 0;
+		foreach($this->score as $key => $score) {
+			if (strpos($key, 'round') === 0)
+				$total += $score;
+		}
+		return $total;
+	}
 }
