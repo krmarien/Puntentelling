@@ -4,7 +4,7 @@ require_once('php/Teams.php');
 require_once('php/Team.php');
 require_once('php/Score.php');
 
-pg_connect('dbname=' . Config::$DATABASE . ' user=' . Config::$USER . ' password=' . Config::$PASSWORD . '');
+pg_connect('host=localhost dbname=' . Config::$DATABASE . ' user=' . Config::$USER . ' password=' . Config::$PASSWORD . '');
 
 if (isset($_GET['untill'])) {
 	$untill = $_GET['untill'];
@@ -114,6 +114,7 @@ $teams = Teams::findAllByRank('DESC', $untill);
 					$(this).find('td:gt(' + (<?= $untill + 1; ?>) + '), th:gt(' + (<?= $untill + 1; ?>) + ')').hide();
 				});
 				
+									$('#ranking').autoScroll();
 				if($.support.fullscreen){
 					$('#fullScreen').click(function(e){
 						$('#content').fullScreen({

@@ -1,27 +1,37 @@
 (function ($) {
 	var defaults = {
 		method	 : 'continiously',
-		speed	 : 4000,
-		waitTime : 10000,
+		speed	 : 5000,
+		waitTime : 15000,
 	};
 	
 	var methods = {
 		init : function ( options ) {
 			options = $.extend(defaults, options);
 			
-			return this.each(function () {
-				var $this = $(this),
-					data = $this.data('aS');
-					
-				if ( ! data ) {
-					$this.data('aS', {
-							options: options,
-							direction: 1,
-						}
-					);
+			var $this = $(this),
+				data = $this.data('aS');
+				
+			if ( ! data ) {
+				$this.data('aS', {
+						options: options,
+						direction: 1,
+						pauzed: true,
+					}
+				);
+			}
+			
+			$(document).unbind('keydown.aS').bind('keydown.aS', function (e) {
+				if (e.keyCode == 32) {
+					e.preventDefault();
+					if (data.pauzed)
+						_start($this);
+					else
+						_pauze($this);
 				}
-				_start($this);
 			});
+			
+			return this;
 		},
 		start : function () {
 			_start($(this));
@@ -49,6 +59,7 @@
 	
 	_start = function (table) {
 		var data = table.data('aS');
+		table.data('aS').pauzed = false;
 
 		if (data.options.method == 'continiously')
 			_scroll(table);
@@ -88,6 +99,7 @@
 	}
 	
 	_pauze = function (table) {
+		table.data('aS').pauzed = true;
 		clearTimeout(table.data('aS').timer);
 		table.unbind('change.aS');
 	}

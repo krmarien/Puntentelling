@@ -4,7 +4,7 @@ require_once('php/Teams.php');
 require_once('php/Team.php');
 require_once('php/Score.php');
 
-pg_connect('dbname=' . Config::$DATABASE . ' user=' . Config::$USER . ' password=' . Config::$PASSWORD . '');
+pg_connect('host=localhost dbname=' . Config::$DATABASE . ' user=' . Config::$USER . ' password=' . Config::$PASSWORD . '');
 
 $teams = Teams::findAll();
 ?>
