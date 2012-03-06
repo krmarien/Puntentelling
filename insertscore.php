@@ -83,7 +83,7 @@ $teams = Teams::findAll();
 				$('.roundScore').keyup(function (e) {
 					if (e.keyCode == 13) {
 						var next = $(this).parent().parent().next().find('.roundScore');
-						next.focus();
+						next.focus().select();
 						if (next.find('.roundScore').length == 0)
 							$(this).blur();
 					}

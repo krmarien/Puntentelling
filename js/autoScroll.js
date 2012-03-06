@@ -3,6 +3,7 @@
 		method	 : 'continiously',
 		speed	 : 5000,
 		waitTime : 15000,
+		pauzed	 : true,
 	};
 	
 	var methods = {
@@ -16,10 +17,13 @@
 				$this.data('aS', {
 						options: options,
 						direction: 1,
-						pauzed: true,
+						pauzed: options.pauzed,
 					}
 				);
 			}
+			
+			if (!options.pauzed)
+				_start($this);
 			
 			$(document).unbind('keydown.aS').bind('keydown.aS', function (e) {
 				if (e.keyCode == 32) {
@@ -92,7 +96,9 @@
 	}
 	
 	_followDown = function (table) {
+				console.log('start');
 		table.bind('change.aS', function () {
+				console.log('scroll');
 				var scrollTop = table.find('tbody').prop('scrollHeight') - table.find('tbody').height();
 				table.find('tbody').scrollTop(scrollTop);
 			});

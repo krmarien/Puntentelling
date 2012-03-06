@@ -110,7 +110,7 @@ $teams = Teams::findAllByRank(Config::$ENDSCOREORDER);
 					});
 				}
 				applySizes();
-				$('#ranking').autoScroll({method: 'alwaysDown'});
+				$('#ranking').autoScroll({method: 'alwaysDown', pauzed: false});
 			});
 			$(document).keyup(function (e) {
 				if (e.keyCode == 37 || e.keyCode == 38) {

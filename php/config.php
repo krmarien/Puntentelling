@@ -10,19 +10,19 @@ class Config {
 	
 	static $ENDSCOREORDER = 'ASC';
 	
-	static $SEPARATIONQUESTION = 20;
+	static $SEPARATIONQUESTION = 545;
 	static $HASSEPARATION = true;
 	
 	static $ROUNDS = array(
-		1 => 'Ronde 1',
-		2 => 'Ronde 2',
-		3 => 'Ronde 3',
-		4 => 'Super 1',
-		5 => 'Ronde 4',
-		6 => 'Ronde 5',
-		7 => 'Ronde 6',
-		8 => 'Super 2',
-		9 => 'Ronde 7',
-		10 => 'Ronde 8',
+		1 => 'Round 1',
+		2 => 'Round 2',
+		3 => 'Round 3',
+		4 => 'Round 4',
+		5 => 'Puzzle',
+		6 => 'Round 5',
+		7 => 'Round 6',
+		8 => 'Logo',
+		9 => 'Round 7',
+		10 => 'Bridge',
 	);
 }
