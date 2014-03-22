@@ -1,0 +1,59 @@
+<?php
+
+class Config {
+    static $ORGANISATION = 'Organization';
+
+    static $DATABASE = 'puntentelling';
+    static $USER = 'puntentelling';
+    static $PASSWORD = 'puntentelling';
+    static $TBL = 'schema.tbl';
+
+    static $ENDSCOREORDER = 'ASC';
+
+    static $SEPARATIONQUESTION = 100;
+    static $HASSEPARATION = true;
+
+    static $ROUNDS = array(
+        1 => 'Round 1',
+        2 => 'Round 2',
+        3 => 'Round 3',
+        4 => 'Puzzel',
+        5 => 'Round 4',
+        6 => 'Round 5',
+        7 => 'Media',
+        8 => 'Round 6',
+        9 => 'Round 7'
+    );
+}
+
+/*
+CREATE SEQUENCE schema.tbl_next_id
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE schema.tbl_next_id OWNER TO puntentelling;
+
+CREATE TABLE schema.tbl (
+    id bigint DEFAULT nextval('schema.tbl_next_id'::regclass) NOT NULL,
+    name character varying(255) NOT NULL,
+    num integer NOT NULL,
+    separation integer DEFAULT 0 NOT NULL,
+    round1 integer DEFAULT 0 NOT NULL,
+    round2 integer DEFAULT 0 NOT NULL,
+    round3 integer DEFAULT 0 NOT NULL,
+    round4 integer DEFAULT 0 NOT NULL,
+    round5 integer DEFAULT 0 NOT NULL,
+    round6 integer DEFAULT 0 NOT NULL,
+    round7 integer DEFAULT 0 NOT NULL,
+    round8 integer DEFAULT 0 NOT NULL,
+    round9 integer DEFAULT 0 NOT NULL
+);
+
+ALTER TABLE schema.tbl OWNER TO puntentelling;
+
+ALTER TABLE ONLY schema.tbl
+    ADD CONSTRAINT "schema.tbl_pkey" PRIMARY KEY (id);
+ */

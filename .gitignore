@@ -1,6 +1,4 @@
-
-Puntentelling.esproj/Project.espressostorage
-
-Puntentelling.esproj/user.kristofmarien.espressostorage
-
 .htpasswd
+.htaccess
+
+php/configs
