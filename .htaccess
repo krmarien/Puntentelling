@@ -1,7 +1,0 @@
-php_flag display_errors on
-
-AuthName "Restricted Area"
-AuthType Basic
-AuthUserFile /Users/krmarien/Documents/Projects/Puntentelling/.htpasswd
-AuthGroupFile /dev/null
-require valid-user
