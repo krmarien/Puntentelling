@@ -54,6 +54,7 @@ $teams = Teams::findAllByRank(Config::$ENDSCOREORDER);
                             <li><a href="insertscore.php">Punten invoeren</a></li>
                             <li><a href="viewscore.php">Punten bekijken</a></li>
                             <li class="active"><a href="endscore.php">Eindstand</a></li>
+                            <li><a href="export.php">Export</a></li>
                         </ul>
                     </div>
                 </div>

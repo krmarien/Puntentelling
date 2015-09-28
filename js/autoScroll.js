@@ -93,7 +93,7 @@
                 _scroll(table);
             }, data.options.waitTime + data.options.speed);
         data.timer = timer;
-    }
+    };
 
     _followDown = function (table) {
                 console.log('start');
@@ -102,16 +102,16 @@
                 var scrollTop = table.find('tbody').prop('scrollHeight') - table.find('tbody').height();
                 table.find('tbody').scrollTop(scrollTop);
             });
-    }
+    };
 
     _pauze = function (table) {
         table.data('aS').pauzed = true;
         clearTimeout(table.data('aS').timer);
         table.unbind('change.aS');
-    }
+    };
 
     _destroy = function (table) {
         _pauze(table);
         table.removeData('aS');
-    }
+    };
 }) (jQuery);

@@ -20,6 +20,7 @@ require_once('php/config.php');
                             <li><a href="insertscore.php">Punten invoeren</a></li>
                             <li><a href="viewscore.php">Punten bekijken</a></li>
                             <li><a href="endscore.php">Eindstand</a></li>
+                            <li><a href="export.php">Export</a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,6 +34,7 @@ require_once('php/config.php');
                     <li><a href="insertscore.php">Punten invoeren</a></li>
                     <li><a href="viewscore.php">Punten bekijken</a></li>
                     <li><a href="endscore.php">Eindstand</a></li>
+                    <li><a href="export.php">Export</a></li>
                 </ul>
             </div>
         </div>

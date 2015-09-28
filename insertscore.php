@@ -27,6 +27,7 @@ $teams = Teams::findAll();
                             <li class="active"><a href="insertscore.php">Punten invoeren</a></li>
                             <li><a href="viewscore.php">Punten bekijken</a></li>
                             <li><a href="endscore.php">Eindstand</a></li>
+                            <li><a href="export.php">Export</a></li>
                         </ul>
                     </div>
                 </div>
@@ -49,7 +50,7 @@ $teams = Teams::findAll();
                     <div id="separation" class="tab-pane fade in form-horizontal">
                         <?php foreach($teams as $team): ?>
                             <div class="control-group">
-                                <label class="control-label" for="name"><?= $team->getName(); ?></label>
+                                <label class="control-label" for="name"><?= $team->getName(); ?> (<?= $team->getNumber(); ?>)</label>
                                 <div class="controls">
                                     <input type="text" data-team="<?= $team->getId(); ?>" data-round="separation" class="input-xlarge roundScore" value="<?= $team->getScore('separation'); ?>">
                                 </div>
@@ -62,7 +63,7 @@ $teams = Teams::findAll();
                     <div id="round<?= $num; ?>" class="tab-pane fade in form-horizontal">
                         <?php foreach($teams as $team): ?>
                             <div class="control-group">
-                                <label class="control-label" for="name"><?= $team->getName(); ?></label>
+                                <label class="control-label" for="name"><?= $team->getName(); ?> (<?= $team->getNumber(); ?>)</label>
                                 <div class="controls">
                                     <input type="text" data-team="<?= $team->getId(); ?>" data-round="<?= $num; ?>" class="input-xlarge roundScore" value="<?= $team->getScore($num); ?>">
                                 </div>

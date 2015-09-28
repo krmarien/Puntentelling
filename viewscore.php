@@ -53,6 +53,7 @@ $teams = Teams::findAllByRank('DESC', $untill);
                             <li><a href="insertscore.php">Punten invoeren</a></li>
                             <li class="active"><a href="viewscore.php">Punten bekijken</a></li>
                             <li><a href="endscore.php">Eindstand</a></li>
+                            <li><a href="export.php">Export</a></li>
                         </ul>
                     </div>
                 </div>
@@ -114,7 +115,7 @@ $teams = Teams::findAllByRank('DESC', $untill);
                     $(this).find('td:gt(' + (<?= $untill + 1; ?>) + '), th:gt(' + (<?= $untill + 1; ?>) + ')').hide();
                 });
 
-                $('#ranking').autoScroll();
+                $('#ranking').autoScroll({pauzed: false});
                 if($.support.fullscreen){
                     $('#fullScreen').click(function(e){
                         $('#content').fullScreen({
