@@ -4,6 +4,7 @@ class Config {
     static $ORGANISATION = 'Organization';
 
     static $DATABASE = 'puntentelling';
+    static $HOST = 'localhost';
     static $USER = 'puntentelling';
     static $PASSWORD = 'puntentelling';
     static $TBL = 'schema.tbl';
