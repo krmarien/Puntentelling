@@ -52,7 +52,8 @@ $teams = Teams::findAll();
                             <div class="control-group">
                                 <label class="control-label" for="name"><?= $team->getName(); ?> (<?= $team->getNumber(); ?>)</label>
                                 <div class="controls">
-                                    <input type="text" data-team="<?= $team->getId(); ?>" data-round="separation" class="input-xlarge roundScore" value="<?= $team->getScore('separation'); ?>">
+                                    <input type="text" class="input-small sepHour"> uur <input type="text" class="input-small sepMinute"> minutes <input type="text" class="input-small sepSec"> seconden
+                                    <input type="text" data-team="<?= $team->getId(); ?>" data-round="separation" class="input-xlarge roundScore hide" value="<?= $team->getScore('separation'); ?>">
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -77,9 +78,59 @@ $teams = Teams::findAll();
         <script src="js/jquery-1.7.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script>
+            var updateTimeValue = function (wrapper) {
+                var hours = parseInt(wrapper.find('.sepHour').val(), 10) || 0;
+                var minutes = parseInt(wrapper.find('.sepMinute').val(), 10) || 0;
+                var seconds = parseInt(wrapper.find('.sepSec').val(), 10) || 0;
+
+                var total = wrapper.find('.roundScore');
+
+                total.val(hours * 60 * 60 + minutes * 60 + seconds).blur();
+            };
+
+            var loadTimeValue = function (wrapper) {
+                var total = parseInt(wrapper.find('.roundScore').val(), 10) || 0;
+
+                var seconds = total % 60;
+                var minutes = ((total - seconds) / 60 ) % (60);
+                var hours = (total - minutes * 60 - seconds) / (60 * 60);
+
+                wrapper.find('.sepHour').val(hours);
+                wrapper.find('.sepMinute').val(minutes);
+                wrapper.find('.sepSec').val(seconds);
+            };
+
             $(document).ready(function () {
+                $('#separation .controls').each(function () {
+                    loadTimeValue($(this));
+                });
                 $('#tab li:first').addClass('active');
                 $('#tab-content .tab-pane:first').addClass('active');
+
+                $('.sepHour').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var next = $(this).parent().find('.sepMinute');
+                        next.focus().select();
+                    }
+                }).blur(function () {
+                    updateTimeValue($(this).parent());
+                });
+                $('.sepMinute').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var next = $(this).parent().find('.sepSec');
+                        next.focus().select();
+                    }
+                }).blur(function () {
+                    updateTimeValue($(this).parent());
+                });
+                $('.sepSec').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var next = $(this).parent().parent().next().find('.sepHour');
+                        next.focus().select();
+                    }
+                }).blur(function () {
+                    updateTimeValue($(this).parent());
+                });
 
                 $('.roundScore').keyup(function (e) {
                     if (e.keyCode == 13) {
